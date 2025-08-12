@@ -44,7 +44,6 @@ def train(args):
         args=training_args,
         train_dataset=train_data,
         eval_dataset=val_data,
-        tokenizer=None,
         data_collator=collate_fn,
         compute_metrics=compute_metrics
     )
