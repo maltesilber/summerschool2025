@@ -23,8 +23,9 @@ def train(args):
 
     training_args = TrainingArguments(
         output_dir=args.output_dir,
-        eval_strategy="epoch",
-        save_strategy="epoch",
+        eval_strategy="steps",  # evaluate more frequently if desired
+        save_strategy="steps",
+        save_steps=1000,  # save checkpoint every 500 steps
         load_best_model_at_end=True,
         metric_for_best_model="accuracy",
         greater_is_better=True,
@@ -61,7 +62,7 @@ if __name__ == '__main__':
     # hyperparams
     parser.add_argument('--lr', type=float, default=3e-5)
     parser.add_argument('--lr_scheduler_type', type=str, default='cosine')
-    parser.add_argument('--epochs', type=int, default=50)
+    parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--num_workers', type=int, default=24)
     parser.add_argument('--weight_decay', type=float, default=1e-4)
