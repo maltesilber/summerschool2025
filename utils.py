@@ -1,10 +1,9 @@
 import pandas as pd
-
 import numpy as np
 from sklearn.model_selection import train_test_split
+from evaluate import load
 
 import torch
-from torch.utils.data import DataLoader
 from torchvision import transforms
 from transformers import AutoImageProcessor
 from sentence_transformers import SentenceTransformer
@@ -52,7 +51,7 @@ def get_transforms(split):
             transforms.Normalize(mean=processor.image_mean, std=processor.image_std)
         ])
 
-def get_dataloader(df, path, batch_size=32, num_workers=32):
+def get_dataloader(df, path):
     train_df = df[df['filename_index'].str.contains('train')]
     train_df, val_df = train_test_split(train_df, test_size=0.2, random_state=42)
     print('+++++++++++++++++++++++++++++++')
@@ -64,3 +63,7 @@ def get_dataloader(df, path, batch_size=32, num_workers=32):
     val_dataset = FungiDataset(df=val_df, path=path, transform=get_transforms('val'))
     test_dataset = FungiDataset(df=test_df, path=path, transform=get_transforms('test'))
     return train_dataset, val_dataset, test_dataset
+
+metric = load("accuracy")
+def compute_metrics(p):
+    return metric.compute(predictions=np.argmax(p.predictions, axis=1), references=p.label_ids)

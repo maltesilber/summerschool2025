@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 import pandas as pd
-from utils import get_dataloader, collate_fn
+from utils import get_dataloader, collate_fn, compute_metrics
 from transformers import ViTForImageClassification, Trainer, TrainingArguments
 
 
@@ -9,8 +9,6 @@ def train(args):
     train_data, val_data, test_data = get_dataloader(
         meta_data,
         args.data_root,
-        args.batch_size,
-        args.num_workers
     )
 
     model = ViTForImageClassification.from_pretrained(
@@ -25,10 +23,9 @@ def train(args):
         output_dir=args.output_dir,
         eval_strategy="steps",  # evaluate more frequently if desired
         save_strategy="steps",
-        save_steps=1000,  # save checkpoint every 500 steps
+        eval_steps=10,
+        save_steps=10,  # save checkpoint every 500 steps
         load_best_model_at_end=True,
-        metric_for_best_model="accuracy",
-        greater_is_better=True,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
         learning_rate=args.lr,
@@ -48,7 +45,8 @@ def train(args):
         train_dataset=train_data,
         eval_dataset=val_data,
         tokenizer=None,
-        data_collator=collate_fn
+        data_collator=collate_fn,
+        compute_metrics=compute_metrics
     )
     trainer.train()
 
