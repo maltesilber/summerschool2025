@@ -21,7 +21,7 @@ WDs=(1e-4 1e-2)
 for LR in "${LRs[@]}"; do
   for WD in "${WDs[@]}"; do
     OUTPUT_DIR="${OUTPUT_BASE}/lr_${LR}_wd_${WD}"
-    python train_script.py \
+    python main.py \
       --data_root $DATA_ROOT \
       --output_dir $OUTPUT_DIR \
       --logging_dir $LOGGING_DIR \
