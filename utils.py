@@ -55,6 +55,8 @@ def get_transforms(split):
 def get_dataloader(df, path, batch_size=32, num_workers=32):
     train_df = df[df['filename_index'].str.contains('train')]
     train_df, val_df = train_test_split(train_df, test_size=0.2, random_state=42)
+    print('+++++++++++++++++++++++++++++++')
+    print('VAL SAMPLES: ', len(val_df))
     print('TRAINING SAMPLES: ', len(train_df))
     test_df = df[df['filename_index'].str.contains('test')]
 
