@@ -23,8 +23,8 @@ def train(args):
         output_dir=args.output_dir,
         eval_strategy="steps",  # evaluate more frequently if desired
         save_strategy="steps",
-        eval_steps=10,
-        save_steps=10,  # save checkpoint every 500 steps
+        eval_steps=100,
+        save_steps=100,  # save checkpoint every 500 steps
         load_best_model_at_end=True,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
