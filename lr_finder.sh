@@ -8,7 +8,6 @@ EPOCHS=10
 LR_SCHEDULER_TYPE="cosine"
 WARMUP_RATIO=0.01
 LOGGING_STEPS=50
-FP16_FLAG=""
 
 # Define the learning rates and weight decays to test
 LRs=(1e-4 1e-3)

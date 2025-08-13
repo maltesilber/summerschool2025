@@ -16,8 +16,8 @@ def train(args):
         num_labels=183,
         ignore_mismatched_sizes=True
     )
-    #for param in model.vit.parameters():
-    #    param.requires_grad = False
+    for param in model.vit.parameters():
+        param.requires_grad = False
 
     training_args = TrainingArguments(
         output_dir=args.output_dir,
