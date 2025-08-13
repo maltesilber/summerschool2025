@@ -61,7 +61,7 @@ if __name__ == '__main__':
     parser.add_argument('--lr_scheduler_type', type=str, default='cosine')
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=128)
-    parser.add_argument('--num_workers', type=int, default=24)
+    parser.add_argument('--num_workers', type=int, default=32)
     parser.add_argument('--weight_decay', type=float, default=1e-4)
     parser.add_argument('--warmup_ratio', type=float, default=0.01)
     parser.add_argument('--logging_steps', type=int, default=50)
