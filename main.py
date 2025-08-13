@@ -12,7 +12,7 @@ def train(args):
     )
 
     model = ViTForImageClassification.from_pretrained(
-        "google/vit-base-patch16-224",
+        "google/vit-large-patch16-224",
         num_labels=183,
         ignore_mismatched_sizes=True
     )
@@ -58,7 +58,6 @@ if __name__ == '__main__':
 
     # hyperparams
     parser.add_argument('--lr', type=float, default=3e-5)
-    parser.add_argument('--lr_scheduler_type', type=str, default='cosine')
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--num_workers', type=int, default=32)
