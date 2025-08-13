@@ -5,7 +5,6 @@ OUTPUT_BASE="./vit-base-checkpoints"
 LOGGING_DIR="./logs"
 BATCH_SIZE=128
 EPOCHS=10
-LR_SCHEDULER_TYPE="cosine"
 WARMUP_RATIO=0.01
 LOGGING_STEPS=50
 
@@ -24,7 +23,6 @@ for LR in "${LRs[@]}"; do
       --batch_size $BATCH_SIZE \
       --epochs $EPOCHS \
       --lr $LR \
-      --lr_scheduler_type $LR_SCHEDULER_TYPE \
       --weight_decay $WD \
       --warmup_ratio $WARMUP_RATIO \
       --logging_steps $LOGGING_STEPS \
