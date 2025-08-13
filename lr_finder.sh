@@ -14,8 +14,8 @@ FP16_FLAG=""
 # FP16_FLAG="--fp16"
 
 # Define the learning rates and weight decays to test
-LRs=(3e-5 1e-4)
-WDs=(1e-4 1e-2)
+LRs=(1e-4 1e-3)
+WDs=(0 1e-4)
 
 # Iterate over learning rates and weight decays
 for LR in "${LRs[@]}"; do
