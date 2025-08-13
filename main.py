@@ -29,7 +29,6 @@ def train(args):
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
         learning_rate=args.lr,
-        lr_scheduler_type=args.lr_scheduler_type,
         weight_decay=args.weight_decay,
         num_train_epochs=args.epochs,
         warmup_ratio=args.warmup_ratio,
