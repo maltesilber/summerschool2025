@@ -10,9 +10,6 @@ WARMUP_RATIO=0.01
 LOGGING_STEPS=50
 FP16_FLAG=""
 
-# Uncomment if mixed precision is desired
-# FP16_FLAG="--fp16"
-
 # Define the learning rates and weight decays to test
 LRs=(1e-4 1e-3)
 WDs=(0 1e-4)
@@ -32,6 +29,6 @@ for LR in "${LRs[@]}"; do
       --weight_decay $WD \
       --warmup_ratio $WARMUP_RATIO \
       --logging_steps $LOGGING_STEPS \
-      $FP16_FLAG
+      --fp16
   done
 done
